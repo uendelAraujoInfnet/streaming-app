@@ -1,0 +1,11 @@
+.searchPage {
+  padding: 16px;
+}
+
+.searchTitle {
+  margin-bottom: 24px;
+}
+
+.noResults {
+  margin-top: 24px;
+}

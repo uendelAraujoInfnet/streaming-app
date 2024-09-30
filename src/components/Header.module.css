@@ -1,0 +1,82 @@
+/* src/components/Header.css */
+a {
+  color: #ffffff;
+  margin-right: 8px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #ff3d00;
+}
+
+.appBar {
+  background-color: #1c1c1c;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: #ff3d00; /* Cor de destaque ao passar o mouse */
+}
+
+.navMenu button, .navMenu a {
+  color: #ffffff;
+  margin-right: 8px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.navMenu button:hover, .navMenu a:hover {
+  text-decoration: none;
+  color: #ff3d00;
+}
+
+.loginButton {
+  margin-left: 8px;
+  transition: background-color 0.3s;
+}
+
+.loginButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menuButton {
+  margin-right: 16px;
+}
+
+.menuButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.MuiMenu-paper {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
+
+.MuiMenuItem-root {
+  transition: background-color 0.3s;
+}
+
+.MuiMenuItem-root:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-bar {
+  transition: background-color 0.3s;
+}
+
+.search-bar:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
