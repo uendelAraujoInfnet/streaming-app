@@ -113,14 +113,12 @@ function Header() {
         </IconButton>
 
         {/* Logo */}
-        <Typography
-          variant="h6"
-          component="div"
-          className={styles.logo}
-          sx={{ flexGrow: 1 }}
-        >
-          <Link to={"/"}>StreamingApp</Link>
-        </Typography>
+        <Link to={"/"}>
+          <img
+            src="https://img.freepik.com/vecteurs-premium/fond-film-cinema-premiere_41737-251.jpg"
+            className={styles.imageLogo}
+          />
+        </Link>
 
         {/* Menu para telas maiores */}
         <Box

@@ -3,6 +3,8 @@
 
 # Professor ! Gostaria de informar que o TP1 foi corrigido e o PDF do mesmo encontra-se anexado dentro dos arquivos do STREAMING.
 
+# LINK DO DEPLOY : https://streaming-app-rust.vercel.app/
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

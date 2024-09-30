@@ -21,14 +21,10 @@ a:hover {
   justify-content: space-between;
 }
 
-.logo {
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.logo:hover {
-  color: #ff3d00; /* Cor de destaque ao passar o mouse */
+.imageLogo {
+  width: 100px;
+  margin-top: 5px;
+  border-radius: 15px;
 }
 
 .navMenu button, .navMenu a {
