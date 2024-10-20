@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchSearchResults } from "../services/api";
 import ContentCard from "../components/ContentCard";
@@ -35,7 +35,7 @@ function Search() {
 
   return (
     <div style={{ padding: "16px" }} className={styles.searchPage}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom style={{marginTop: "80px"}}>
         Resultados para "{searchTerm}"
       </Typography>
       {error ? (
@@ -48,20 +48,12 @@ function Search() {
         <Grid container spacing={2}>
           {results.map((item) => (
             <Grid item xs={12} sm={6} md={4} key={item.id}>
-              <ContentCard
-                title={item.title || item.name}
-                image={
-                  item.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-                    : "/path/to/default-image.jpg" // Substitua pelo caminho da imagem padrão
-                }
-                rating={item.vote_average}
-              />
+              <ContentCard movie={item} />
             </Grid>
           ))}
         </Grid>
       ) : (
-        <Typography variant="body1">Nenhum resultado encontrado.</Typography>
+        <Typography variant="body1" style={{marginTop:"80px"}}>Nenhum resultado encontrado.</Typography>
       )}
     </div>
   );

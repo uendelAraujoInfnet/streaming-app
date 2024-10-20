@@ -6,6 +6,7 @@
 
 .contentCard {
   max-width: 345px;
+  height: 650px;
   margin: 16px auto;
   border-radius: var(--card-radius);
   overflow: hidden;

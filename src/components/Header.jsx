@@ -1,4 +1,3 @@
-import React from "react";
 import { debounce } from "lodash";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,13 +5,11 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   InputBase,
   MenuItem,
   Menu,
   Button,
   Box,
-  ListItemIcon,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -168,6 +165,7 @@ function Header() {
           color="inherit"
           startIcon={<AccountCircle />}
           className={styles.loginButton}
+          sx={{ marginLeft: "20px" }}
         >
           Login
         </Button>
@@ -205,10 +203,15 @@ function Header() {
           <LiveTvIcon sx={{ marginRight: 1 }} />
           Séries
         </MenuItem>
-        <MenuItem onClick={handleCategoriesMenuOpen}>
-          <CategoryIcon sx={{ marginRight: 1 }} />
+        <Button
+          color="inherit"
+          startIcon={<CategoryIcon />}
+          endIcon={<ExpandMoreIcon />}
+          onMouseEnter={handleCategoriesMenuOpen}
+          onClick={handleCategoriesMenuOpen} // Usar também `onClick` para dispositivos touch
+        >
           Categorias
-        </MenuItem>
+        </Button>
       </Menu>
 
       {/* Submenu de Categorias */}
