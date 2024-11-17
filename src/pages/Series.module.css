@@ -1,0 +1,13 @@
+.seriesPage {
+  padding: 16px;
+  margin-top: 75px;
+}
+
+.paginationButton {
+  margin: 0 8px;
+}
+
+.pageIndicator {
+  font-weight: bold;
+  align-self: center;
+}

@@ -126,13 +126,19 @@ function Header() {
             <Link to={"/"}>Início</Link>
           </Button>
           <Button color="inherit" startIcon={<NewReleasesIcon />}>
-            Lançamentos
+            <Link to={"/releases"} className={styles.link}>
+              Lançamentos
+            </Link>
           </Button>
           <Button color="inherit" startIcon={<MovieIcon />}>
-            Filmes
+            <Link to={"/movies"} className={styles.link}>
+              Filmes
+            </Link>
           </Button>
           <Button color="inherit" startIcon={<LiveTvIcon />}>
-            Séries
+            <Link to={"/series"} className={styles.link}>
+              Séries
+            </Link>
           </Button>
           <Button
             color="inherit"

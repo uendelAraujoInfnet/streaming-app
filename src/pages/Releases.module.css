@@ -1,0 +1,32 @@
+.releasesPage {
+  margin-top: 70px;
+  padding: 16px;
+}
+
+.MuiGrid-container {
+  justify-content: center;
+}
+
+.contentCard {
+  max-width: 345px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cardMedia {
+  height: 500px; /* Ajuste a altura conforme necessário */
+  object-fit: cover;
+}
+
+.cardRating {
+  margin-top: 8px;
+}
+
+.paginationButton {
+  margin: 0 8px;
+}
+
+.pageIndicator {
+  font-weight: bold;
+  align-self: center;
+}

@@ -1,0 +1,13 @@
+.moviesPage {
+  margin-top: 70px;
+  padding: 16px;
+}
+
+.paginationButton {
+  margin: 0 8px;
+}
+
+.pageIndicator {
+  font-weight: bold;
+  align-self: center;
+}
