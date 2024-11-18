@@ -217,6 +217,11 @@ function Header() {
             Séries
           </Link>
         </MenuItem>
+        {/* Categorias */}
+        <MenuItem onClick={handleCategoriesMenuOpen} className={styles.link}>
+          <CategoryIcon sx={{ marginRight: 1 }} />
+          Categorias
+        </MenuItem>
       </Menu>
 
       {/* Submenu de Categorias */}
