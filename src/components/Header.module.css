@@ -1,4 +1,11 @@
 /* src/components/Header.css */
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
 a {
   color: #ffffff;
   margin-right: 8px;

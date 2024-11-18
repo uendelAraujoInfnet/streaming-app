@@ -194,30 +194,29 @@ function Header() {
         sx={{ display: { xs: "block", md: "none" } }}
       >
         <MenuItem onClick={handleMenuClose}>
-          <HomeIcon sx={{ marginRight: 1 }} />
-          Início
+          <Link to="/" className={styles.link}>
+            <HomeIcon sx={{ marginRight: 1 }} />
+            Início
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <NewReleasesIcon sx={{ marginRight: 1 }} />
-          Lançamentos
+          <Link to="/releases" className={styles.link}>
+            <NewReleasesIcon sx={{ marginRight: 1 }} />
+            Lançamentos
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <MovieIcon sx={{ marginRight: 1 }} />
-          Filmes
+          <Link to="/movies" className={styles.link}>
+            <MovieIcon sx={{ marginRight: 1 }} />
+            Filmes
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <LiveTvIcon sx={{ marginRight: 1 }} />
-          Séries
+          <Link to="/series" className={styles.link}>
+            <LiveTvIcon sx={{ marginRight: 1 }} />
+            Séries
+          </Link>
         </MenuItem>
-        <Button
-          color="inherit"
-          startIcon={<CategoryIcon />}
-          endIcon={<ExpandMoreIcon />}
-          onMouseEnter={handleCategoriesMenuOpen}
-          onClick={handleCategoriesMenuOpen} // Usar também `onClick` para dispositivos touch
-        >
-          Categorias
-        </Button>
       </Menu>
 
       {/* Submenu de Categorias */}
@@ -240,7 +239,9 @@ function Header() {
       >
         {categories.map((category) => (
           <MenuItem key={category} onClick={handleMenuClose}>
-            {category}
+            <Link to={`/category/${category}`} className={styles.link}>
+              {category}
+            </Link>
           </MenuItem>
         ))}
       </Menu>
