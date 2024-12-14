@@ -28,7 +28,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     const { request_token } = await fetchToken();
-    window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://streaming-app-rust.vercel.app/`;
+    window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://streaming-app-rust.vercel.app/login`;
   };
 
   return (
