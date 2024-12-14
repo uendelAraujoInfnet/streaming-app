@@ -19,21 +19,30 @@ const Login = () => {
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    const requestToken = query.get("request_token");
+  const requestToken = query.get("request_token");
 
-    if (requestToken) {
-      createSession(requestToken).then((data) => {
-        localStorage.setItem("session_id", data.session_id);
-        navigate(from, { replace: true }); // Redireciona para a página de origem após o login
-      });
-    }
-  }, [navigate, from]);
+  if (requestToken) {
+    createSession(requestToken).then((data) => {
+      if (!data.success) {
+        console.error("Erro: Token inválido ou sessão não criada.");
+        return;
+      }
+      localStorage.setItem("session_id", data.session_id);
+      navigate("/");
+    });
+  }
+}, [navigate]);
 
-  const handleLogin = async () => {
-    const { request_token } = await fetchToken();
-    // Configura a URL de autenticação do TMDb
+const handleLogin = async () => {
+  try {
+    const { request_token } = await fetchToken(); // Agora pega diretamente de response.data
     window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://streaming-app-rust.vercel.app/login`;
-  };
+  } catch (error) {
+    console.error("Erro durante o login:", error.message);
+    alert("Não foi possível iniciar o processo de login. Tente novamente.");
+  }
+};
+
 
   return (
     <Container className={styles.loginContainer} maxWidth="sm">

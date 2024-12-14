@@ -10,6 +10,7 @@ import {
   Menu,
   Button,
   Box,
+  Typography,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -23,9 +24,11 @@ import {
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
 import { styled, alpha } from "@mui/material/styles";
+import { useAuth } from "../context/AuthContext"; // Uso do AuthContext
 import styles from "./Header.module.css";
 
 function Header() {
+  const { user, logout, loading } = useAuth(); // Inclui 'loading' do contexto
   const [anchorEl, setAnchorEl] = useState(null);
   const [categoriesAnchorEl, setCategoriesAnchorEl] = useState(null);
   const [searchInput, setSearchInput] = useState("");
@@ -72,8 +75,9 @@ function Header() {
     setSearchInput("");
   };
 
-  const handleLoginClick = () => {
-    navigate("/login");
+  const handleLogoutClick = () => {
+    logout();
+    navigate("/"); // Redireciona para a página inicial após logout
   };
 
   // Lista de categorias
@@ -118,6 +122,7 @@ function Header() {
           <img
             src="https://img.freepik.com/vecteurs-premium/fond-film-cinema-premiere_41737-251.jpg"
             className={styles.imageLogo}
+            alt="Logo do Cinema"
           />
         </Link>
 
@@ -170,16 +175,37 @@ function Header() {
           </Search>
         </form>
 
-        {/* Botão de Login */}
-        <Button
-          color="inherit"
-          startIcon={<AccountCircle />}
-          className={styles.loginButton}
-          sx={{ marginLeft: "20px" }}
-          onClick={handleLoginClick}
-        >
-          Login
-        </Button>
+        {/* Exibição do botão de Login ou Nome do Usuário */}
+        {loading ? ( // Verifica se os dados estão carregando
+          <Typography variant="body1" color="inherit">
+            Carregando...
+          </Typography>
+        ) : user ? ( // Exibe o nome do usuário quando autenticado
+          <Box display="flex" alignItems="center">
+            <Typography
+              sx={{ marginRight: "16px", color: "white", fontWeight: "bold" }}
+            >
+              {user.username}
+            </Typography>
+            <Button
+              color="inherit"
+              startIcon={<AccountCircle />}
+              onClick={handleLogoutClick}
+            >
+              Logout
+            </Button>
+          </Box>
+        ) : (
+          <Button
+            color="inherit"
+            startIcon={<AccountCircle />}
+            className={styles.loginButton}
+            sx={{ marginLeft: "20px" }}
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </Button>
+        )}
       </Toolbar>
 
       {/* Menu Responsivo */}
@@ -294,7 +320,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "#ffffff",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // Padding vertical + padding do ícone
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",

@@ -5,19 +5,73 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 // Autenticação
 export const fetchToken = async () => {
-  const response = await axios.get(`${BASE_URL}/authentication/token/new`, {
-    params: { api_key: API_KEY },
-  });
-  return response.data;
+  try {
+    const response = await axios.get(`${BASE_URL}/authentication/token/new`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Erro ao buscar o token de requisição:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error(
+      error.response?.data?.status_message || "Erro ao buscar token."
+    );
+  }
 };
 
 export const createSession = async (request_token) => {
-  const response = await axios.post(
-    `${BASE_URL}/authentication/session/new`,
-    { request_token },
-    { params: { api_key: API_KEY } }
-  );
-  return response.data;
+  try {
+    // Fazendo a requisição para criar a sessão
+    const response = await axios.post(
+      `${BASE_URL}/authentication/session/new`,
+      { request_token },
+      {
+        params: { api_key: API_KEY },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Validando a resposta da API
+    if (response.status === 200 && response.data.success) {
+      console.log("Sessão criada com sucesso:", response.data);
+      return response.data; // Retorna os dados da sessão
+    } else {
+      console.error(
+        "Erro ao criar sessão: Verifique se o token de solicitação é válido."
+      );
+      throw new Error(
+        "Erro ao criar sessão. O token de solicitação pode estar inválido."
+      );
+    }
+  } catch (error) {
+    // Tratamento de erros
+    console.error(
+      "Erro na criação da sessão. Detalhes:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error(
+      error.response?.data?.status_message || "Erro desconhecido ao criar a sessão."
+    );
+  }
+};
+
+// Busca por detalhes da conta acessada
+export const fetchAccountDetails = async (sessionId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/account?api_key=${API_KEY}&session_id=${sessionId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Erro ao buscar detalhes da conta:", error);
+    return null;
+  }
 };
 
 // Função para buscar favoritos
@@ -58,16 +112,22 @@ export const submitRating = async (id, value, session_id) => {
   return response.data;
 };
 
-//Realiza a busca de filmes de acordo com o que o usuário digita
+// Realiza a busca de filmes ou séries
 export const fetchSearchResults = async (query) => {
-  const response = await fetch(
-    `${BASE_URL}/search/multi?api_key=${API_KEY}&language=pt-BR&query=${encodeURIComponent(
-      query
-    )}`
-  );
-  const data = await response.json();
-  return data.results;
+  try {
+    const response = await fetch(
+      `${BASE_URL}/search/multi?api_key=${API_KEY}&language=pt-BR&query=${encodeURIComponent(
+        query
+      )}`
+    );
+    const data = await response.json();
+    return data.results || []; // Retorna um array vazio em caso de falha
+  } catch (error) {
+    console.error("Erro ao buscar resultados:", error);
+    throw error;
+  }
 };
+
 
 //Busca os filmes mais populares para mostrar na tela inicial
 export const fetchPopularMovies = async () => {

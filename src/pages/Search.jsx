@@ -22,7 +22,7 @@ function Search() {
       setError(null);
       fetchSearchResults(searchTerm)
         .then((data) => {
-          setResults(data);
+          setResults(data || []); // Garante que results sempre será um array
           setLoading(false);
         })
         .catch((err) => {
@@ -35,7 +35,7 @@ function Search() {
 
   return (
     <div style={{ padding: "16px" }} className={styles.searchPage}>
-      <Typography variant="h4" gutterBottom style={{marginTop: "80px"}}>
+      <Typography variant="h4" gutterBottom style={{ marginTop: "80px" }}>
         Resultados para "{searchTerm}"
       </Typography>
       {error ? (
@@ -46,14 +46,16 @@ function Search() {
         <CircularProgress />
       ) : results.length > 0 ? (
         <Grid container spacing={2}>
-          {results.map((item) => (
-            <Grid item xs={12} sm={6} md={4} key={item.id}>
-              <ContentCard movie={item} />
+          {results.map((content) => (
+            <Grid item xs={12} sm={6} md={4} key={content.id}>
+              <ContentCard content={content} /> {/* Atualizado */}
             </Grid>
           ))}
         </Grid>
       ) : (
-        <Typography variant="body1" style={{marginTop:"80px"}}>Nenhum resultado encontrado.</Typography>
+        <Typography variant="body1" style={{ marginTop: "80px" }}>
+          Nenhum resultado encontrado.
+        </Typography>
       )}
     </div>
   );
