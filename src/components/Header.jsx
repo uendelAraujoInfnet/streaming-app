@@ -72,6 +72,10 @@ function Header() {
     setSearchInput("");
   };
 
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
   // Lista de categorias
   const categories = [
     "Terror",
@@ -172,6 +176,7 @@ function Header() {
           startIcon={<AccountCircle />}
           className={styles.loginButton}
           sx={{ marginLeft: "20px" }}
+          onClick={handleLoginClick}
         >
           Login
         </Button>

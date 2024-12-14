@@ -3,6 +3,61 @@ import axios from "axios";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
+// Autenticação
+export const fetchToken = async () => {
+  const response = await axios.get(`${BASE_URL}/authentication/token/new`, {
+    params: { api_key: API_KEY },
+  });
+  return response.data;
+};
+
+export const createSession = async (request_token) => {
+  const response = await axios.post(
+    `${BASE_URL}/authentication/session/new`,
+    { request_token },
+    { params: { api_key: API_KEY } }
+  );
+  return response.data;
+};
+
+// Função para buscar favoritos
+export const fetchFavorites = async (userId) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/favorites?userId=${userId}&api_key=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error("Erro ao buscar favoritos");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+// Favoritos
+export const toggleFavorite = async (id, favorite, session_id) => {
+  const response = await axios.post(
+    `${BASE_URL}/account/{account_id}/favorite`,
+    {
+      media_type: "movie", // ou "tv"
+      media_id: id,
+      favorite,
+    },
+    { params: { api_key: API_KEY, session_id } }
+  );
+  return response.data;
+};
+
+// Avaliações
+export const submitRating = async (id, value, session_id) => {
+  const response = await axios.post(
+    `${BASE_URL}/movie/${id}/rating`, // ou `/tv/${id}/rating`
+    { value: value * 2 },
+    { params: { api_key: API_KEY, session_id } }
+  );
+  return response.data;
+};
+
 //Realiza a busca de filmes de acordo com o que o usuário digita
 export const fetchSearchResults = async (query) => {
   const response = await fetch(
