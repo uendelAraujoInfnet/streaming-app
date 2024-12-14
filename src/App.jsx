@@ -22,8 +22,13 @@ function App() {
       <AuthProvider>
         <Header />
         <Routes>
+          {/* Rotas públicas */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/releases" element={<Releases />} />
+
+          {/* Rotas privadas */}
           <Route
             path="/favorites"
             element={
@@ -32,17 +37,30 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/movies/:id"
+            element={
+              <PrivateRoute>
+                <MovieDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/series/:id"
+            element={
+              <PrivateRoute>
+                <SerieDetails />
+              </PrivateRoute>
+            }
+          />
           <Route path="/movies" element={<Movies />} />
-          
           <Route path="/series" element={<Series />} />
-          <Route path="/movies/:id" element={<MovieDetails />} />
-          <Route path="/series/:id" element={<SerieDetails />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/releases" element={<Releases />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-        <Footer />
+
+        
       </AuthProvider>
+      <Footer />
     </Router>
   );
 }
