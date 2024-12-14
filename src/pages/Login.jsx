@@ -20,23 +20,15 @@ const Login = () => {
 
     if (requestToken) {
       createSession(requestToken).then((data) => {
-        if (data.session_id) {
-          localStorage.setItem("session_id", data.session_id);
-          navigate("/");
-        } else {
-          console.error("Erro ao criar sessão.");
-        }
+        localStorage.setItem("session_id", data.session_id);
+        navigate("/");
       });
     }
   }, [navigate]);
 
   const handleLogin = async () => {
     const { request_token } = await fetchToken();
-    if (request_token) {
-      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://streaming-app-rust.vercel.app/login`;
-    } else {
-      console.error("Erro ao obter request_token.");
-    }
+    window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://streaming-app-rust.vercel.app/login`;
   };
 
   return (
