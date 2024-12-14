@@ -46,7 +46,7 @@ const Login = () => {
         </Typography>
         <Button
           variant="contained"
-          color="primary"
+          color="error"
           size="large"
           className={styles.loginButton}
           onClick={handleLogin}

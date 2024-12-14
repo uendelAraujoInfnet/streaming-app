@@ -104,7 +104,7 @@ function Header() {
         {/* Menu Icon para telas menores */}
         <IconButton
           edge="start"
-          color="inherit"
+          color="success"
           aria-label="menu"
           onClick={handleMenuOpen}
           className={styles.menuButton}

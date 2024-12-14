@@ -26,6 +26,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #1c1c1c;
 }
 
 .imageLogo {
@@ -34,7 +35,9 @@ a:hover {
   border-radius: 15px;
 }
 
+
 .navMenu button, .navMenu a {
+  font-weight: bold;
   color: #ffffff;
   margin-right: 8px;
   transition: color 0.3s;

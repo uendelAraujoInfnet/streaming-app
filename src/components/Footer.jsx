@@ -6,7 +6,7 @@ import styles from "./Footer.module.css";
 function Footer() {
   return (
     <Box component="footer" className={styles.footer}>
-      <Typography variant="body2" align="center" color="textSecondary">
+      <Typography variant="body2" align="center">
         © {new Date().getFullYear()} IveStreaming. Todos os direitos reservados
         a Uendel Ives de Araujo.
       </Typography>
