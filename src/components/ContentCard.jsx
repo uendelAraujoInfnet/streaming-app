@@ -31,10 +31,8 @@ const ContentCard = ({ content }) => {
           alt={title}
           className={styles.cardMedia}
         />
-        <CardContent>
-          <Typography variant="h6" noWrap>
-            {title}
-          </Typography>
+        <CardContent className={styles.cardContent}>
+          <Typography variant="h6">{title}</Typography>
           <Rating
             name="read-only"
             value={content.vote_average / 2}
